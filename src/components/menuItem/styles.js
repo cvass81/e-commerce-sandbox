@@ -4,13 +4,19 @@ const useStyles = makeStyles(
     {
         paper: {
             width: '100%',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
+            position: 'relative',
             '&:after': {
                 content: '""',
                 display: 'block',
-                paddingBottom: '78%',
+                paddingBottom: '72%',
             },
+        },
+        content: {
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
         },
     },
     {name: 'MenuItem'}

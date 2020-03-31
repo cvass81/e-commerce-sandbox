@@ -12,8 +12,14 @@ const MenuItem = ({grid, title, imageURL}) => {
                 variant="outlined"
                 square
                 className={classes.paper}
-                style={{backgroundImage: `url(${imageURL})`}}
-            />
+            >
+                <div
+                    className={classes.content}
+                    style={{backgroundImage: `url(${imageURL})`}}
+                >
+                    <Typography>{title}</Typography>
+                </div>
+            </Paper>
         </Grid>
     );
 };
