@@ -27,6 +27,7 @@
     "no-shadow": "off",
     "no-continue": 0,
     "no-mixed-operators": 0,
+    "no-unused-vars": "off",
     "no-useless-concat": 0,
     "no-useless-constructor": 0,
     "prefer-template": 0,

@@ -1,8 +1,16 @@
 import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
+import HomePage from './components/homepage';
 
 function App() {
     return (
-        <div className="App"/>
+        <>
+            <CssBaseline/>
+            <Container>
+                <HomePage/>
+            </Container>
+        </>
     );
 }
 
