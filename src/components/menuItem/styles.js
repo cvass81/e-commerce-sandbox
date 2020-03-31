@@ -2,12 +2,14 @@ import makeStyles from '@material-ui/core/styles/makeStyles.js';
 
 const useStyles = makeStyles(
     {
-        square: {
+        paper: {
             width: '100%',
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
             '&:after': {
                 content: '""',
                 display: 'block',
-                paddingBottom: '100%',
+                paddingBottom: '78%',
             },
         },
     },

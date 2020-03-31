@@ -1,9 +1,8 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import DirectoryMenu from '../directoryMenu';
+import Directory from '../directory';
 
 const HomePage = () => (
-    <DirectoryMenu/>
+    <Directory/>
 );
 
 export default HomePage;
