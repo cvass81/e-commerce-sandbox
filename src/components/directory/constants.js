@@ -29,7 +29,7 @@ export const WOMEN = {
 
 export const MEN = {
     grid: 6,
-    title: 'MENS',
+    title: 'MEN',
     imageURL: 'https://i.ibb.co/R70vBrQ/men.png',
     linkURL: 'shop/mens',
 };

@@ -11,14 +11,31 @@ const MenuItem = ({grid, title, imageURL}) => {
             <Paper
                 variant="outlined"
                 square
-                className={classes.paper}
+                className={classes.wrapper}
             >
                 <div
-                    className={classes.content}
+                    className={classes.bg}
                     style={{backgroundImage: `url(${imageURL})`}}
+                />
+                <Paper
+                    variant="outlined"
+                    square
+                    className={classes.content}
                 >
-                    <Typography>{title}</Typography>
-                </div>
+                    <Typography
+                        component="h2"
+                        variant="h5"
+                        align="center"
+                    >
+                        {title}
+                    </Typography>
+                    <Typography
+                        variant="subtitle1"
+                        align="center"
+                    >
+                        SHOP NOW
+                    </Typography>
+                </Paper>
             </Paper>
         </Grid>
     );
