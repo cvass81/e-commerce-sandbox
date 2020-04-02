@@ -1,31 +1,26 @@
 import React from 'react';
-import { createMuiTheme, responsiveFontSizes, ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+} from 'react-router-dom';
 import Container from '@material-ui/core/Container';
-import HomePage from './components/homepage';
+import Home from './components/homepage';
+import Theme from './modules/theme';
 
 function App() {
-    let theme = createMuiTheme({
-        typography: {
-            fontFamily: [
-                'Open Sans Condensed',
-            ].join(','),
-            h5: {
-                fontWeight: 600,
-            },
-        },
-    });
-    theme = responsiveFontSizes(theme);
-
     return (
-        <>
-            <CssBaseline/>
-            <ThemeProvider theme={theme}>
+        <Theme>
+            <Router>
                 <Container>
-                    <HomePage/>
+                    <Switch>
+                        <Route path="/">
+                            <Home/>
+                        </Route>
+                    </Switch>
                 </Container>
-            </ThemeProvider>
-        </>
+            </Router>
+        </Theme>
     );
 }
 

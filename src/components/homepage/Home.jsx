@@ -1,8 +1,8 @@
 import React from 'react';
 import Directory from '../directory';
 
-const HomePage = () => (
+const Home = () => (
     <Directory/>
 );
 
-export default HomePage;
+export default Home;

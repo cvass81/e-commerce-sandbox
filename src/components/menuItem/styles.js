@@ -14,9 +14,6 @@ const useStyles = makeStyles(theme => (
                     display: 'block',
                     paddingBottom: '72%',
                 },
-                '&:hover': {
-                    cursor: 'pointer',
-                },
                 '&:hover > $bg': {
                     transform: 'scale(1.1)',
                     transitionDuration: '.6s',
