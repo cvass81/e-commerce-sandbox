@@ -7,12 +7,14 @@ import {
 import Container from '@material-ui/core/Container';
 import Home from './components/home';
 import Shop from './components/shop';
+import Header from './components/header';
 import Theme from './modules/theme';
 
 function App() {
     return (
         <Theme>
             <Router>
+                <Header/>
                 <Container>
                     <Switch>
                         <Route path="/shop">

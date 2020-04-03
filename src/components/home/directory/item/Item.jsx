@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import useStyles from './styles';
 
-const MenuItem = (
+const Item = (
     {
         grid,
         title,
@@ -61,4 +61,4 @@ const MenuItem = (
     );
 };
 
-export default MenuItem;
+export default Item;
