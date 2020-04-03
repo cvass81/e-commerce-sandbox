@@ -1,16 +1,32 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {
+    Link as RouterLink,
+    useRouteMatch,
+} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 import useStyles from './styles';
 
-const MenuItem = ({grid, title, imageURL, linkURL}) => {
+const MenuItem = (
+    {
+        grid,
+        title,
+        imageURL,
+        linkURL,
+    }
+) => {
     const classes = useStyles();
-
+    const match = useRouteMatch(`/${linkURL}`);
+    console.log(match);
     return (
         <Grid item xs={grid}>
-            <Link className={classes.link} to={linkURL}>
+            <Link
+                underline="none"
+                component={RouterLink}
+                to={linkURL}
+            >
                 <Paper
                     variant="outlined"
                     square

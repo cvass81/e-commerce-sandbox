@@ -5,39 +5,43 @@ const useStyles = makeStyles(theme => (
             wrapper: {
                 width: '100%',
                 position: 'relative',
+                paddingTop: theme.spacing(1),
+                paddingBottom: theme.spacing(1),
+                paddingLeft: theme.spacing(2),
+                paddingRight: theme.spacing(2),
                 display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                alignItems: 'flex-end',
                 overflow: 'hidden',
                 '&:after': {
                     content: '""',
                     display: 'block',
-                    paddingBottom: '72%',
+                    paddingBottom: '112%',
                 },
                 '&:hover > $bg': {
-                    transform: 'scale(1.1)',
-                    transitionDuration: '.6s',
+                    opacity: 0.85,
                 },
-                '&:hover > $content': {
-                    opacity: 0.65,
-                    transitionDuration: '.6s',
+                '&:hover > $button, &:focus > $button': {
+                    display: 'block',
                 },
             },
             bg: {
                 position: 'absolute',
+                top: 0,
+                left: 0,
                 width: '100%',
                 height: '100%',
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
-                transition: 'transform .3s cubic-bezier(0.25, 0.45, 0.45, 0.95)',
             },
-            content: {
-                padding: theme.spacing(1),
-                transition: 'opacity .3s cubic-bezier(0.25, 0.45, 0.45, 0.95)',
-                opacity: 0.85,
+            button: {
+                display: 'none',
+                opacity: 0.9,
+            },
+            specifics: {
+                display: 'flex',
+                justifyContent: 'space-between',
             },
         }),
-    {name: 'MenuItem'}
-);
+    {name: 'MenuItem'});
 
 export default useStyles;
