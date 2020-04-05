@@ -42,6 +42,6 @@ const useStyles = makeStyles(theme => (
                 justifyContent: 'space-between',
             },
         }),
-    {name: 'MenuItem'});
+    {name: 'Item'});
 
 export default useStyles;

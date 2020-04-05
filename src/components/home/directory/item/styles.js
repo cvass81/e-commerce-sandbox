@@ -37,7 +37,6 @@ const useStyles = makeStyles(theme => (
                 opacity: 0.85,
             },
         }),
-    {name: 'MenuItem'}
-);
+    {name: 'MenuItem'});
 
 export default useStyles;
