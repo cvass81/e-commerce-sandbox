@@ -32,7 +32,6 @@ const theme = createMuiTheme({
         MuiFormLabel: {
             root: {
                 fontSize: '1.1rem',
-                marginBottom: theme.spacing(2),
             },
         },
         MuiInput: {
