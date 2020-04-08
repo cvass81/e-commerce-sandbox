@@ -7,26 +7,29 @@ import {
 import Home from './components/home';
 import Shop from './components/shop';
 import Header from './components/header';
-import Theme from './modules/theme';
+import Theme from './providers/theme';
 import SignUpAndSignIn from './components/singUpAndSignIn';
+import { UserProvider } from './providers/user';
 
 function App() {
     return (
         <Theme>
-            <Router>
-                <Header/>
-                <Switch>
-                    <Route path="/shop">
-                        <Shop/>
-                    </Route>
-                    <Route path="/login">
-                        <SignUpAndSignIn/>
-                    </Route>
-                    <Route path="/">
-                        <Home/>
-                    </Route>
-                </Switch>
-            </Router>
+            <UserProvider>
+                <Router>
+                    <Header/>
+                    <Switch>
+                        <Route path="/shop">
+                            <Shop/>
+                        </Route>
+                        <Route path="/login">
+                            <SignUpAndSignIn/>
+                        </Route>
+                        <Route path="/">
+                            <Home/>
+                        </Route>
+                    </Switch>
+                </Router>
+            </UserProvider>
         </Theme>
     );
 }

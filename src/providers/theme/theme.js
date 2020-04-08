@@ -24,6 +24,9 @@ const theme = createMuiTheme({
         grey: {
             300: '#FFFFFF',
         },
+        primary: {
+            main: '#000000',
+        },
     },
     shape: {
         borderRadius: 0,
@@ -39,8 +42,31 @@ const theme = createMuiTheme({
                 fontSize: '1.1rem',
             },
             input: {
-                height: '1.55rem',
+                height: '1.65rem',
             },
+        },
+        MuiButton: {
+            root: {
+                whiteSpace: 'nowrap',
+            },
+            containedPrimary: {
+                border: '1px solid #000000',
+                '&$focusVisible': {
+                    '& .MuiTouchRipple-ripple': {
+                        display: 'none',
+                    },
+                },
+                '&:hover, &:focus': {
+                    backgroundColor: '#FFFFFF',
+                    color: '#000000',
+                },
+            },
+            focusVisible: {},
+        },
+    },
+    props: {
+        MuiButton: {
+            disableElevation: true,
         },
     },
 });

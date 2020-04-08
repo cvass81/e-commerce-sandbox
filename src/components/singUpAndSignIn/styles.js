@@ -6,7 +6,7 @@ const useStyles = makeStyles(theme => (
                 marginBottom: theme.spacing(4),
             },
             textField: {
-                marginBottom: theme.spacing(2),
+                marginBottom: theme.spacing(4),
             },
         }),
     {name: 'SignUpAndSignIn'});
