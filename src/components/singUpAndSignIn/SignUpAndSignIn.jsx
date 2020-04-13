@@ -12,10 +12,10 @@ const SignUpAndSignIn = () => {
         <Container maxWidth="md">
             <Grid container spacing={8}>
                 <Grid item sm={6} xs>
-                    <SignIn/>
+                    <SignIn />
                 </Grid>
                 <Grid item sm={6} xs>
-                    <SignUp/>
+                    <SignUp />
                 </Grid>
             </Grid>
         </Container>

@@ -14,17 +14,11 @@ const SignIn = () => {
 
     return (
         <>
-            <Typography variant="h4">
-                I already have an account
-            </Typography>
+            <Typography variant="h4">I already have an account</Typography>
             <Typography variant="subtitle1" className={classes.subtitle}>
                 Sign in with your email and password
             </Typography>
-            <form
-                noValidate
-                autoComplete="off"
-                onSubmit={handleSubmit}
-            >
+            <form noValidate autoComplete="off" onSubmit={handleSubmit}>
                 <TextField
                     required
                     fullWidth

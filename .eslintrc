@@ -1,5 +1,10 @@
 {
-  "extends": "airbnb",
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:jest/recommended",
+    "plugin:prettier/recommended"
+  ],
   "rules": {
     "arrow-parens": 0,
     "camelcase": 0,
