@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import UserContext from './UserContext.jsx';
-import { auth } from '../../firebase/utils';
+import { auth, createUserProfileDocument } from '../../firebase/utils';
 
 const UserProvider = props => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const unsubscribeFromAuth = auth.onAuthStateChanged(user =>
-            setUser(user),
-        );
+        const unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
+            setUser(user);
+            await createUserProfileDocument(user);
+        });
 
         return () => unsubscribeFromAuth();
     }, []);

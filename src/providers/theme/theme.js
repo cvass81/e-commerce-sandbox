@@ -2,9 +2,7 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
     typography: {
-        fontFamily: [
-            'Open Sans Condensed',
-        ].join(','),
+        fontFamily: ['Open Sans Condensed'].join(','),
         h1: {
             fontSize: '3.8rem',
         },

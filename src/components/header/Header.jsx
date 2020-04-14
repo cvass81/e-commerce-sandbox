@@ -5,8 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import CrownSvg from './CrownSvg.jsx';
-import LoginButton from './LoginButton.jsx';
+import CrownSvg from './crownSvg';
+import LoginButton from './loginButton';
 import useStyles from './styles.js';
 
 const Header = () => {

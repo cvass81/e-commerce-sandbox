@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import { UserContext } from '../../providers/user';
-import { auth } from '../../firebase/utils';
+import { UserContext } from '../../../providers/user';
+import { auth } from '../../../firebase/utils';
 
 const LoginButton = () => {
     const user = useContext(UserContext);
