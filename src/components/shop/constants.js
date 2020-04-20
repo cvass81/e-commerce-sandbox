@@ -157,10 +157,9 @@ export const SNEAKERS = {
     ],
 };
 
-
 export const WOMENS = {
     itemsOnGrid: 4,
-    title: 'WOMEN\'S',
+    title: "WOMEN'S",
     imageURL: 'https://i.ibb.co/GCCdy8t/womens.png',
     linkURL: '',
     items: [
@@ -211,7 +210,7 @@ export const WOMENS = {
 
 export const MEN = {
     itemsOnGrid: 4,
-    title: 'MEN\'S',
+    title: "MEN'S",
     imageURL: 'https://i.ibb.co/R70vBrQ/men.png',
     linkURL: '',
     items: [

@@ -1,42 +1,43 @@
 import makeStyles from '@material-ui/core/styles/makeStyles.js';
 
-const useStyles = makeStyles(theme => (
-        {
-            wrapper: {
-                width: '100%',
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                overflow: 'hidden',
-                '&:after': {
-                    content: '""',
-                    display: 'block',
-                    paddingBottom: '72%',
-                },
-                '&:hover > $bg': {
-                    transform: 'scale(1.1)',
-                    transitionDuration: '.6s',
-                },
-                '&:hover > $content': {
-                    opacity: 0.65,
-                    transitionDuration: '.6s',
-                },
+const useStyles = makeStyles(
+    theme => ({
+        wrapper: {
+            width: '100%',
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden',
+            '&:after': {
+                content: '""',
+                display: 'block',
+                paddingBottom: '72%',
             },
-            bg: {
-                position: 'absolute',
-                width: '100%',
-                height: '100%',
-                backgroundPosition: 'center',
-                backgroundSize: 'cover',
-                transition: 'transform .3s cubic-bezier(0.25, 0.45, 0.45, 0.95)',
+            '&:hover > $bg': {
+                transform: 'scale(1.1)',
+                transitionDuration: '.6s',
             },
-            content: {
-                padding: theme.spacing(1),
-                transition: 'opacity .3s cubic-bezier(0.25, 0.45, 0.45, 0.95)',
-                opacity: 0.85,
+            '&:hover > $content': {
+                opacity: 0.65,
+                transitionDuration: '.6s',
             },
-        }),
-    {name: 'MenuItem'});
+        },
+        bg: {
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            transition: 'transform .3s cubic-bezier(0.25, 0.45, 0.45, 0.95)',
+        },
+        content: {
+            padding: theme.spacing(1),
+            transition: 'opacity .3s cubic-bezier(0.25, 0.45, 0.45, 0.95)',
+            opacity: 0.85,
+        },
+    }),
+    { name: 'MenuItem' },
+);
 
 export default useStyles;

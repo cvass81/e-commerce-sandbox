@@ -5,7 +5,9 @@ import Item from './item';
 
 const Directory = () => (
     <Grid container spacing={2}>
-    {Object.keys(C).map(itemKey => <Item key={itemKey} {...C[itemKey]}/>)}
+        {Object.keys(C).map(itemKey => (
+            <Item key={itemKey} {...C[itemKey]} />
+        ))}
     </Grid>
 );
 

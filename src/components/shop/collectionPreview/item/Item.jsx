@@ -4,18 +4,14 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './styles';
 
-const Item = ({name, price, imageUrl}) => {
+const Item = ({ name, price, imageUrl }) => {
     const classes = useStyles();
     return (
         <>
-            <Paper
-                elevation={0}
-                square
-                className={classes.wrapper}
-            >
+            <Paper elevation={0} square className={classes.wrapper}>
                 <div
                     className={classes.bg}
-                    style={{backgroundImage: `url(${imageUrl})`}}
+                    style={{ backgroundImage: `url(${imageUrl})` }}
                 />
                 <Button
                     variant="contained"
