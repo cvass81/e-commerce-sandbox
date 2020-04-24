@@ -4,7 +4,7 @@ import Directory from './directory';
 
 const Home = () => (
     <Container>
-        <Directory/>
+        <Directory />
     </Container>
 );
 

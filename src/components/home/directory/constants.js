@@ -19,7 +19,6 @@ export const SNEAKERS = {
     linkURL: '',
 };
 
-
 export const WOMEN = {
     grid: 6,
     title: 'WOMEN',
