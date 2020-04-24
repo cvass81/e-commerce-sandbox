@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import SignIn from './signIn';
 import SignUp from './signUp';
-import { UserContext } from '../../providers/user';
+import { useUserContext } from '../../providers/user';
 
 const SignUpAndSignIn = () => {
     // TODO: user exists as an example here. To be removed
-    const user = useContext(UserContext);
+    const user = useUserContext();
     return (
         <Container maxWidth="md">
             <Grid container spacing={8}>
