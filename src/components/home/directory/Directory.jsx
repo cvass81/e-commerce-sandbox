@@ -4,11 +4,11 @@ import * as C from './constants';
 import Item from './item';
 
 const Directory = () => (
-    <Grid container spacing={2}>
-        {Object.keys(C).map(itemKey => (
-            <Item key={itemKey} {...C[itemKey]} />
-        ))}
-    </Grid>
+  <Grid container spacing={2}>
+    {Object.keys(C).map(itemKey => (
+      <Item key={itemKey} {...C[itemKey]} />
+    ))}
+  </Grid>
 );
 
 export default Directory;

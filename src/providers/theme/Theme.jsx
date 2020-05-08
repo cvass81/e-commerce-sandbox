@@ -4,10 +4,10 @@ import { CssBaseline } from '@material-ui/core';
 import theme from './theme.js';
 
 const Theme = ({ children }) => (
-    <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {children}
-    </ThemeProvider>
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    {children}
+  </ThemeProvider>
 );
 
 export default Theme;

@@ -10,34 +10,34 @@ import LoginButton from './loginButton';
 import useStyles from './styles.js';
 
 const Header = () => {
-    const classes = useStyles();
+  const classes = useStyles();
 
-    return (
-        <AppBar
-            color="transparent"
-            position="static"
-            elevation={0}
-            className={classes.appBar}
-        >
-            <Toolbar>
-                <Grid container alignItems="center">
-                    <Grid item xs>
-                        <Typography component={Link} variant="h1" to="/">
-                            <CrownSvg fontSize="inherit" />
-                        </Typography>
-                    </Grid>
-                    <Grid item>
-                        <Button color="inherit" component={Link} to="/shop">
-                            SHOP
-                        </Button>
-                    </Grid>
-                    <Grid item>
-                        <LoginButton />
-                    </Grid>
-                </Grid>
-            </Toolbar>
-        </AppBar>
-    );
+  return (
+    <AppBar
+      color="transparent"
+      position="static"
+      elevation={0}
+      className={classes.appBar}
+    >
+      <Toolbar>
+        <Grid container alignItems="center">
+          <Grid item xs>
+            <Typography component={Link} variant="h1" to="/">
+              <CrownSvg fontSize="inherit" />
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Button color="inherit" component={Link} to="/shop">
+              SHOP
+            </Button>
+          </Grid>
+          <Grid item>
+            <LoginButton />
+          </Grid>
+        </Grid>
+      </Toolbar>
+    </AppBar>
+  );
 };
 
 export default Header;

@@ -6,62 +6,56 @@ import Button from '@material-ui/core/Button';
 import useStyles from '../styles';
 import GoogleButton from '../../../modules/googleButton';
 import { signInWithGoogle } from '../../../firebase/utils';
+import * as C from './constants';
 
 const SignIn = () => {
-    const classes = useStyles();
+  const classes = useStyles();
 
-    const handleSubmit = e => e.preventDefault();
+  const handleSubmit = e => e.preventDefault();
 
-    return (
-        <>
-            <Typography variant="h4">I already have an account</Typography>
-            <Typography variant="subtitle1" className={classes.subtitle}>
-                Sign in with your email and password
-            </Typography>
-            <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-                <TextField
-                    required
-                    fullWidth
-                    id="email_sign_in"
-                    label="Email"
-                    className={classes.textField}
-                />
-                <TextField
-                    required
-                    fullWidth
-                    id="password_sign_in"
-                    label="Password"
-                    type="password"
-                    className={classes.textField}
-                />
-                <Grid container spacing={2}>
-                    <Grid item xs>
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                            size="large"
-                            fullWidth
-                        >
-                            SIGN IN
-                        </Button>
-                    </Grid>
-                    <Grid item xs>
-                        <GoogleButton
-                            onClick={signInWithGoogle}
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                            size="large"
-                            fullWidth
-                        >
-                            SIGN IN WITH GOOGLE
-                        </GoogleButton>
-                    </Grid>
-                </Grid>
-            </form>
-        </>
-    );
+  return (
+    <>
+      <Typography variant="h4">I already have an account</Typography>
+      <Typography variant="subtitle1" className={classes.subtitle}>
+        Sign in with your email and password
+      </Typography>
+      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+        {Object.keys(C).map(field => (
+          <TextField
+            className={classes.textField}
+            required
+            fullWidth
+            key={C[field].id}
+            {...C[field]}
+          />
+        ))}
+        <Grid container spacing={2}>
+          <Grid item xs>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              size="large"
+              fullWidth
+            >
+              SIGN IN
+            </Button>
+          </Grid>
+          <Grid item xs>
+            <GoogleButton
+              onClick={signInWithGoogle}
+              variant="contained"
+              color="primary"
+              size="large"
+              fullWidth
+            >
+              SIGN IN WITH GOOGLE
+            </GoogleButton>
+          </Grid>
+        </Grid>
+      </form>
+    </>
+  );
 };
 
 export default SignIn;

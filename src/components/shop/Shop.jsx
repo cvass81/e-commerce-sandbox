@@ -6,18 +6,18 @@ import * as C from './constants';
 import CollectionPreview from './collectionPreview';
 
 const Shop = () => (
-    <Container>
-        <Typography component="h2" variant="h2" gutterBottom>
-            Collections
-        </Typography>
-        <Grid container direction="column" wrap="nowrap" spacing={3}>
-            {Object.keys(C).map(previewKey => (
-                <Grid item key={previewKey}>
-                    <CollectionPreview {...C[previewKey]} />
-                </Grid>
-            ))}
+  <Container>
+    <Typography component="h2" variant="h2" gutterBottom>
+      Collections
+    </Typography>
+    <Grid container direction="column" wrap="nowrap" spacing={3}>
+      {Object.keys(C).map(previewKey => (
+        <Grid item key={previewKey}>
+          <CollectionPreview {...C[previewKey]} />
         </Grid>
-    </Container>
+      ))}
+    </Grid>
+  </Container>
 );
 
 export default Shop;

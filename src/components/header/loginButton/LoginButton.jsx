@@ -5,18 +5,18 @@ import { useUserContext } from '../../../providers/user';
 import { auth } from '../../../firebase/utils';
 
 const LoginButton = () => {
-    const user = useUserContext();
-    const signOut = () => auth.signOut();
+  const user = useUserContext();
+  const signOut = () => auth.signOut();
 
-    return user ? (
-        <Button color="inherit" onClick={signOut}>
-            LOGOUT
-        </Button>
-    ) : (
-        <Button color="inherit" component={Link} to="/login">
-            LOGIN
-        </Button>
-    );
+  return user ? (
+    <Button color="inherit" onClick={signOut}>
+      LOGOUT
+    </Button>
+  ) : (
+    <Button color="inherit" component={Link} to="/login">
+      LOGIN
+    </Button>
+  );
 };
 
 export default LoginButton;
