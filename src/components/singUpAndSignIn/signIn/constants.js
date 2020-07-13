@@ -1,13 +1,13 @@
 export const EMAIL = {
   id: 'email_sign_in',
-  name: 'emailSignIn',
+  name: 'email',
   label: 'Email',
-  type: 'text',
+  type: 'email',
 };
 
 export const PASSWORD = {
   id: 'password_sign_in',
-  name: 'passwordSignIn',
+  name: 'password',
   label: 'Password',
   type: 'password',
 };

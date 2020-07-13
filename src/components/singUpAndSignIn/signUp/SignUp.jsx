@@ -55,7 +55,7 @@ const SignUp = () => {
             fullWidth
             onChange={handleChange}
             key={C[field].id}
-            value={state[field.name]}
+            value={state[C[field].name]}
             {...C[field]}
           />
         ))}
