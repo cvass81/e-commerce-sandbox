@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import useStyles from '../styles';
 import * as C from './constants';
+import { auth, createUserProfileDocument } from '../../../firebase/utils';
 
 const initialState = {};
 Object.keys(C).forEach(field => {
@@ -19,12 +20,24 @@ const SignUp = () => {
   const handleChange = e =>
     dispatch({ field: e.target.name, value: e.target.value });
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
-    const { passwordSignUp, passwordConfirmSignUp } = state;
-    if (passwordSignUp !== passwordConfirmSignUp) {
+    const { displayName, email, password, passwordConfirm } = state;
+    if (password !== passwordConfirm) {
       console.log('passwords dont match');
+      return;
+    }
+
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password,
+      );
+
+      await createUserProfileDocument(user, { displayName });
+    } catch (error) {
+      console.error(error);
     }
   };
 
