@@ -1,16 +1,19 @@
 import React from 'react';
+import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/home';
 import Shop from './components/shop';
 import Header from './components/header';
 import Theme from './providers/theme';
 import SignUpAndSignIn from './components/singUpAndSignIn';
-import { UserProvider } from './providers/user';
+import store from './redux/store';
+import User from './redux/user';
 
-function App() {
+const App = () => {
   return (
     <Theme>
-      <UserProvider>
+      <ReduxProvider store={store}>
+        <User />
         <Router>
           <Header />
           <Switch>
@@ -25,9 +28,9 @@ function App() {
             </Route>
           </Switch>
         </Router>
-      </UserProvider>
+      </ReduxProvider>
     </Theme>
   );
-}
+};
 
 export default App;

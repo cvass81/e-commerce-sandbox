@@ -71,6 +71,7 @@ const SignIn = () => {
           <Grid item xs>
             <GoogleButton
               onClick={signInWithGoogle}
+              type="button"
               variant="contained"
               color="primary"
               size="large"

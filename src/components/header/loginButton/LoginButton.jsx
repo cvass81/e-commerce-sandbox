@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { useUserContext } from '../../../providers/user';
 import { auth } from '../../../firebase/utils';
 
-const LoginButton = () => {
-  const user = useUserContext();
+const LoginButton = ({ currentUser }) => {
   const signOut = () => auth.signOut();
 
-  return user ? (
+  return currentUser ? (
     <Button color="inherit" onClick={signOut}>
       LOGOUT
     </Button>
@@ -19,4 +19,8 @@ const LoginButton = () => {
   );
 };
 
-export default LoginButton;
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser,
+});
+
+export default connect(mapStateToProps)(LoginButton);
