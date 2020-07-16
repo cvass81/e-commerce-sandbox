@@ -1,36 +1,61 @@
-import React from 'react';
-import { Provider as ReduxProvider } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import Home from './components/home';
 import Shop from './components/shop';
 import Header from './components/header';
-import Theme from './providers/theme';
 import SignUpAndSignIn from './components/singUpAndSignIn';
-import store from './redux/store';
-import User from './redux/user';
+import { setCurrentUser } from './redux/user';
+import { auth, createUserProfileDocument } from './firebase/utils';
 
-const App = () => {
+const App = ({ currentUser, setCurrentUser }) => {
+  useEffect(() => {
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.onSnapshot(snapshot =>
+          setCurrentUser({
+            id: snapshot.id,
+            ...snapshot.data(),
+          }),
+        );
+      } else {
+        setCurrentUser(null);
+      }
+    });
+
+    return () => unsubscribeFromAuth();
+  }, []);
+
   return (
-    <Theme>
-      <ReduxProvider store={store}>
-        <User />
-        <Router>
-          <Header />
-          <Switch>
-            <Route path="/shop">
-              <Shop />
-            </Route>
-            <Route path="/login">
-              <SignUpAndSignIn />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
-        </Router>
-      </ReduxProvider>
-    </Theme>
+    <Router>
+      <Header />
+      <Switch>
+        <Route path="/shop">
+          <Shop />
+        </Route>
+        <Route exact path="/login">
+          {currentUser ? <Redirect to="/" /> : <SignUpAndSignIn />}
+        </Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   );
 };
 
-export default App;
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
