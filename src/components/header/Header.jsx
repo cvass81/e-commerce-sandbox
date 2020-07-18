@@ -5,9 +5,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import CrownSvg from './crownSvg';
+import { CrownIcon } from '../../svgs';
 import LoginButton from './loginButton';
 import useStyles from './styles.js';
+import CartHeader from './cartHeader';
 
 const Header = () => {
   const classes = useStyles();
@@ -23,7 +24,7 @@ const Header = () => {
         <Grid container alignItems="center">
           <Grid item xs>
             <Typography component={Link} variant="h1" to="/">
-              <CrownSvg fontSize="inherit" />
+              <CrownIcon fontSize="inherit" />
             </Typography>
           </Grid>
           <Grid item>
@@ -33,6 +34,9 @@ const Header = () => {
           </Grid>
           <Grid item>
             <LoginButton />
+          </Grid>
+          <Grid item>
+            <CartHeader />
           </Grid>
         </Grid>
       </Toolbar>

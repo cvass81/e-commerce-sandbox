@@ -59,6 +59,12 @@ const theme = createMuiTheme({
           color: '#000000',
         },
       },
+      outlinedPrimary: {
+        '&:hover, &:focus': {
+          backgroundColor: '#000000',
+          color: '#FFFFFF',
+        },
+      },
       focusVisible: {},
     },
   },
