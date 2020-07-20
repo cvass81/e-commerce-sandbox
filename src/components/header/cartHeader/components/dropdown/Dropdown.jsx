@@ -4,9 +4,9 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import useStyles from './styles';
-import { toggleCartVisibility } from '../../../redux/cart';
+import { toggleCartVisibility } from '../../../../../redux/cart';
 
-const CartDropdown = ({ anchorEl, cartVisible, toggleCartVisibility }) => {
+const Dropdown = ({ anchorEl, cartVisible, toggleCartVisibility }) => {
   const classes = useStyles();
 
   return (
@@ -37,4 +37,4 @@ const mapDispatchToProps = dispatch => ({
   toggleCartVisibility: () => dispatch(toggleCartVisibility()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartDropdown);
+export default connect(mapStateToProps, mapDispatchToProps)(Dropdown);

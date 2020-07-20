@@ -3,10 +3,10 @@ import { useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import useStyles from './styles';
-import { ShoppingIcon } from '../../../svgs';
-import { toggleCartVisibility } from '../../../redux/cart';
+import { ShoppingIcon } from '../../../../../svgs';
+import { toggleCartVisibility } from '../../../../../redux/cart';
 
-const CartIcon = React.forwardRef((props, ref) => {
+const Button = React.forwardRef((props, ref) => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
@@ -30,4 +30,4 @@ const CartIcon = React.forwardRef((props, ref) => {
   );
 });
 
-export default CartIcon;
+export default Button;

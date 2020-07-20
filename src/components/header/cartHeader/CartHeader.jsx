@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import CartIcon from '../cartIcon';
-import CartDropdown from '../cartDropdown';
+import Button from './components/button';
+import CartDropdown from './components/dropdown';
 
 const CartHeader = () => {
   const anchorRef = useRef(null);
@@ -12,7 +12,7 @@ const CartHeader = () => {
 
   return (
     <>
-      <CartIcon ref={anchorRef} />
+      <Button ref={anchorRef} />
       <CartDropdown anchorEl={anchorEl} />
     </>
   );
