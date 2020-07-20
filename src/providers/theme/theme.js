@@ -47,13 +47,19 @@ const theme = createMuiTheme({
       root: {
         whiteSpace: 'nowrap',
       },
-      containedPrimary: {
+      contained: {
         border: '1px solid #000000',
         '&$focusVisible': {
           '& .MuiTouchRipple-ripple': {
             display: 'none',
           },
         },
+        '&:hover, &:focus': {
+          backgroundColor: '#000000',
+          color: '#FFFFFF',
+        },
+      },
+      containedPrimary: {
         '&:hover, &:focus': {
           backgroundColor: '#FFFFFF',
           color: '#000000',

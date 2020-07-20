@@ -2,8 +2,8 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-import * as C from './constants';
 import CollectionPreview from './collectionPreview';
+import * as C from './constants';
 
 const Shop = () => (
   <Container>

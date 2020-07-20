@@ -15,7 +15,7 @@ const CollectionPreview = ({ title, itemsOnGrid, items }) => (
           const col = 12 / itemsOnGrid;
           return (
             <Grid item md={col} sm={col * 2} xs={12} key={id}>
-              <Item {...otherItemProps} />
+              <Item item={{ id, ...otherItemProps }} />
             </Grid>
           );
         })}

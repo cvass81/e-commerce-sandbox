@@ -1,6 +1,10 @@
 import actionTypes from './actionTypes';
 
-// eslint-disable-next-line import/prefer-default-export
 export const toggleCartVisibility = () => ({
   type: actionTypes.TOGGLE_CART_VISIBILITY,
+});
+
+export const addItem = item => ({
+  type: actionTypes.ADD_ITEM,
+  payload: item,
 });
