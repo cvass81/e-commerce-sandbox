@@ -1,10 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './styles';
-import { addItem } from '../../../../redux/cart';
 
 const Item = ({ item, addItemToCart }) => {
   const classes = useStyles();
@@ -37,8 +35,4 @@ const Item = ({ item, addItemToCart }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  addItemToCart: item => dispatch(addItem(item)),
-});
-
-export default connect(null, mapDispatchToProps)(Item);
+export default Item;

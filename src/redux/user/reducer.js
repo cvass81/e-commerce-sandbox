@@ -1,15 +1,13 @@
 import actionTypes from './actionTypes';
+import initState from './initState';
+import C from './constants';
 
-const INITIAL_STATE = {
-  currentUser: null,
-};
-
-export default (state = INITIAL_STATE, { type, payload }) => {
+export default (state = initState, { type, value }) => {
   switch (type) {
     case actionTypes.SET_CURRENT_USER:
       return {
         ...state,
-        currentUser: payload,
+        [C.PROPS.CURRENT_USER]: value,
       };
     default:
       return state;

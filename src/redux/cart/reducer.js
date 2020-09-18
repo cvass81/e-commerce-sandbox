@@ -1,22 +1,19 @@
 import actionTypes from './actionTypes';
-import * as U from './utils.js';
+import initState from './initState';
+import C from './constants';
+import U from './utils.js';
 
-const INITIAL_STATE = {
-  cartVisible: false,
-  cartItems: [],
-};
-
-export default (state = INITIAL_STATE, { type, payload }) => {
+export default (state = initState, { type, value }) => {
   switch (type) {
     case actionTypes.TOGGLE_CART_VISIBILITY:
       return {
         ...state,
-        cartVisible: !state.cartVisible,
+        [C.PROPS.CART_VISIBLE]: !state[C.PROPS.CART_VISIBLE],
       };
     case actionTypes.ADD_ITEM:
       return {
         ...state,
-        cartItems: U.addItemToCart(state.cartItems, payload),
+        [C.PROPS.CART_ITEMS]: U.addItemToCart(state[C.PROPS.CART_ITEMS], value),
       };
     default:
       return state;

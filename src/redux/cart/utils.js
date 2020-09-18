@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/prefer-default-export
-export const addItemToCart = (cartItems, itemToAdd) => {
+const addItemToCart = (cartItems, itemToAdd) => {
   const isExistingItem = cartItems.some(
     cartItem => cartItem.id === itemToAdd.id,
   );
@@ -14,3 +13,5 @@ export const addItemToCart = (cartItems, itemToAdd) => {
 
   return [...cartItems, { ...itemToAdd, quantity: 1 }];
 };
+
+export default { addItemToCart };

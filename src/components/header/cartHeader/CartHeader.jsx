@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Button from './components/button';
-import CartDropdown from './components/dropdown';
+import CartButton from './components/button';
+import Dropdown from './components/dropdown';
 
 const CartHeader = () => {
   const anchorRef = useRef(null);
@@ -11,10 +11,10 @@ const CartHeader = () => {
   }, []);
 
   return (
-    <>
-      <Button ref={anchorRef} />
-      <CartDropdown anchorEl={anchorEl} />
-    </>
+    <div ref={anchorRef}>
+      <CartButton />
+      <Dropdown anchorEl={anchorEl} />
+    </div>
   );
 };
 

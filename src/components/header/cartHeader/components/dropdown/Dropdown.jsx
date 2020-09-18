@@ -1,14 +1,18 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import useStyles from './styles';
-import { toggleCartVisibility } from '../../../../../redux/cart';
+import Item from '../item';
 
-const Dropdown = ({ anchorEl, cartVisible, toggleCartVisibility }) => {
+const Dropdown = ({
+  anchorEl,
+  cartVisible,
+  toggleCartVisibility,
+  cartItems,
+}) => {
   const classes = useStyles();
-
+  console.log(cartItems);
   return (
     <Menu
       id="cart_menu"
@@ -17,9 +21,11 @@ const Dropdown = ({ anchorEl, cartVisible, toggleCartVisibility }) => {
       open={cartVisible}
       onClose={toggleCartVisibility}
     >
-      <MenuItem onClick={toggleCartVisibility}>Profile</MenuItem>
-      <MenuItem onClick={toggleCartVisibility}>My account</MenuItem>
-      <MenuItem onClick={toggleCartVisibility}>Logout</MenuItem>
+      {cartItems.map(cartItem => (
+        <MenuItem key={cartItem.id} onClick={toggleCartVisibility}>
+          <Item {...cartItem} />
+        </MenuItem>
+      ))}
       <div className={classes.checkoutBtnContainer}>
         <Button variant="outlined" color="primary" size="large" fullWidth>
           GO TO CHECKOUT
@@ -29,12 +35,4 @@ const Dropdown = ({ anchorEl, cartVisible, toggleCartVisibility }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  cartVisible: state.cart.cartVisible,
-});
-
-const mapDispatchToProps = dispatch => ({
-  toggleCartVisibility: () => dispatch(toggleCartVisibility()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dropdown);
+export default Dropdown;

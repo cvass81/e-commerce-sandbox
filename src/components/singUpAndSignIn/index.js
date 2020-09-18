@@ -1,1 +1,1 @@
-export { default } from './SignUpAndSignIn.jsx';
+export { default } from './SignUpAndSignInContainer';
