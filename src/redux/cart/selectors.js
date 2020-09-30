@@ -1,15 +1,35 @@
-import getOr from 'lodash/fp/getOr';
-import initState from './initState';
+import { createSelector } from 'reselect';
+import get from 'lodash/fp/get';
 import C from './constants';
 
-const getCartVisible = getOr(initState[C.PROPS.CART_VISIBLE], [
-  C.REDUCER_NAME,
-  C.PROPS.CART_VISIBLE,
-]);
+const getCartVisible = createSelector(
+  get(C.REDUCER_NAME),
+  get(C.PROPS.CART_VISIBLE),
+);
 
-const getCartItems = getOr(initState[C.PROPS.CART_ITEMS], [
-  C.REDUCER_NAME,
-  C.PROPS.CART_ITEMS,
-]);
+const getCartItems = createSelector(
+  get(C.REDUCER_NAME),
+  get(C.PROPS.CART_ITEMS),
+);
 
-export default { getCartVisible, getCartItems };
+const getCartItemsCount = createSelector([getCartItems], cartItems =>
+  cartItems.reduce(
+    (accumulatedQuantity, { quantity }) => accumulatedQuantity + quantity,
+    0,
+  ),
+);
+
+const getCartItemsTotalValue = createSelector([getCartItems], cartItems =>
+  cartItems.reduce(
+    (accumulatedPrice, { quantity, price }) =>
+      accumulatedPrice + quantity * price,
+    0,
+  ),
+);
+
+export default {
+  getCartVisible,
+  getCartItems,
+  getCartItemsCount,
+  getCartItemsTotalValue,
+};

@@ -1,13 +1,16 @@
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import Dropdown from './Dropdown';
 import { selectors, actions } from '../../../../../redux/cart';
 
 export default connect(
-  state => ({
-    cartVisible: selectors.getCartVisible(state),
-    cartItems: selectors.getCartItems(state),
+  createStructuredSelector({
+    cartVisible: selectors.getCartVisible,
+    cartItems: selectors.getCartItems,
+    cartItemsCount: selectors.getCartItemsCount,
   }),
   dispatch => ({
-    toggleCartVisibility: () => dispatch(actions.toggleCartVisibility),
+    toggleCartVisibility: state =>
+      dispatch(actions.toggleCartVisibility(state)),
   }),
 )(Dropdown);

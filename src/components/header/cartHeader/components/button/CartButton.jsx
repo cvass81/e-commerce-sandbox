@@ -4,9 +4,8 @@ import IconButton from '@material-ui/core/IconButton';
 import useStyles from './styles';
 import { ShoppingIcon } from '../../../../../svgs';
 
-const CartButton = ({ toggleCartVisibility }) => {
+const CartButton = ({ cartItemsCount, toggleCartVisibility }) => {
   const classes = useStyles();
-
   return (
     <>
       <IconButton
@@ -17,7 +16,7 @@ const CartButton = ({ toggleCartVisibility }) => {
       >
         <ShoppingIcon />
         <Typography variant="caption" className={classes.cartAmount}>
-          0
+          {cartItemsCount}
         </Typography>
       </IconButton>
     </>

@@ -1,10 +1,10 @@
-import getOr from 'lodash/fp/getOr';
-import initState from './initState';
+import { createSelector } from 'reselect';
+import get from 'lodash/fp/get';
 import C from './constants';
 
-const getCurrentUser = getOr(initState[C.PROPS.CURRENT_USER], [
-  C.REDUCER_NAME,
-  C.PROPS.CURRENT_USER,
-]);
+const getCurrentUser = createSelector(
+  get(C.REDUCER_NAME),
+  get(C.PROPS.CURRENT_USER),
+);
 
 export default { getCurrentUser };

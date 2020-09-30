@@ -5,6 +5,7 @@ import Shop from './components/shop';
 import Header from './components/header';
 import User from './components/user';
 import SignUpAndSignIn from './components/singUpAndSignIn';
+import Checkout from './components/checkout';
 
 const App = () => {
   return (
@@ -18,6 +19,9 @@ const App = () => {
           </Route>
           <Route exact path="/login">
             <SignUpAndSignIn />
+          </Route>
+          <Route exact path="/checkout">
+            <Checkout />
           </Route>
           <Route exact path="/">
             <Home />
