@@ -4,10 +4,15 @@ import C from './constants';
 
 export default (state = initState, { type, value }) => {
   switch (type) {
-    case actionTypes.SET_CURRENT_USER:
+    case actionTypes.SHOW_DIALOG:
       return {
         ...state,
-        [C.PROPS.CURRENT_USER]: value,
+        [C.PROPS.DIALOG_PROPS]: value,
+      };
+    case actionTypes.HIDE_DIALOG:
+      return {
+        ...state,
+        [C.PROPS.DIALOG_PROPS]: null,
       };
     default:
       return state;

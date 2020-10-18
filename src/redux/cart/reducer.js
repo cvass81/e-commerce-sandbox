@@ -15,6 +15,22 @@ export default (state = initState, { type, value }) => {
         ...state,
         [C.PROPS.CART_ITEMS]: U.addItemToCart(state[C.PROPS.CART_ITEMS], value),
       };
+    case actionTypes.CLEAR_ITEM:
+      return {
+        ...state,
+        [C.PROPS.CART_ITEMS]: U.clearItemFromCart(
+          state[C.PROPS.CART_ITEMS],
+          value,
+        ),
+      };
+    case actionTypes.CHANGE_QUANTITY:
+      return {
+        ...state,
+        [C.PROPS.CART_ITEMS]: U.changeItemQuantity(
+          state[C.PROPS.CART_ITEMS],
+          value,
+        ),
+      };
     default:
       return state;
   }

@@ -7,14 +7,29 @@ import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import DeleteIcon from '@material-ui/icons/Delete';
 import C from './constants';
 import useStyles from './styles';
+import withDialog from '../../hocs/withDialog/withDialog';
+import ClearButton from './clearButton';
+import QuantityField from './quantityField';
 
-const Checkout = ({ cartItems, cartItemsTotalValue }) => {
+const Checkout = ({
+  cartItems,
+  cartItemsTotalValue,
+  clearItemFromCart,
+  changeItemQuantity,
+  showDialog,
+}) => {
   const classes = useStyles();
+
+  const handleRemoveItem = cartItem =>
+    showDialog({
+      title: `Remove ${cartItem.name} from Cart`,
+      text: 'Are you sure?',
+      action: () => clearItemFromCart(cartItem),
+    });
+
   return (
     <Container maxWidth="md">
       <TableContainer>
@@ -34,21 +49,32 @@ const Checkout = ({ cartItems, cartItemsTotalValue }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {cartItems.map(({ id, name, imageUrl, price, quantity }) => (
-              <TableRow key={id}>
-                <TableCell>
-                  <img alt={name} src={imageUrl} className={classes.image} />
-                </TableCell>
-                <TableCell>{name}</TableCell>
-                <TableCell>{quantity}</TableCell>
-                <TableCell>{`$${price}`}</TableCell>
-                <TableCell>
-                  <IconButton aria-label="delete">
-                    <DeleteIcon fontSize="small" />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            ))}
+            {cartItems.map(cartItem => {
+              const { id, name, imageUrl, price, quantity } = cartItem;
+              return (
+                <TableRow key={id}>
+                  <TableCell>
+                    <img alt={name} src={imageUrl} className={classes.image} />
+                  </TableCell>
+                  <TableCell>{name}</TableCell>
+                  <TableCell>
+                    <QuantityField
+                      changeItemQuantity={changeItemQuantity}
+                      handleRemoveItem={handleRemoveItem}
+                      cartItem={cartItem}
+                      quantity={quantity}
+                    />
+                  </TableCell>
+                  <TableCell>{`$${price}`}</TableCell>
+                  <TableCell>
+                    <ClearButton
+                      handleRemoveItem={handleRemoveItem}
+                      cartItem={cartItem}
+                    />
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>
@@ -64,4 +90,4 @@ const Checkout = ({ cartItems, cartItemsTotalValue }) => {
   );
 };
 
-export default Checkout;
+export default withDialog(Checkout);
