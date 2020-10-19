@@ -1,8 +1,9 @@
 import { createStore } from 'redux';
+import { persistStore } from 'redux-persist';
 import compose from 'lodash/fp/compose';
 import rootReducer from './rootReducer';
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
   compose(
     // eslint-disable-next-line no-undef,no-underscore-dangle
@@ -13,4 +14,4 @@ const store = createStore(
   ),
 );
 
-export default store;
+export const persistor = persistStore(store);

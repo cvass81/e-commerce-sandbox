@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider as ReduxProvider } from 'react-redux';
-import store from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './redux/store';
 import Theme from './providers/theme';
 import App from './App';
 import './index.css';
@@ -9,7 +10,9 @@ import './index.css';
 ReactDOM.render(
   <Theme>
     <ReduxProvider store={store}>
-      <App />
+      <PersistGate persistor={persistor}>
+        <App />
+      </PersistGate>
     </ReduxProvider>
   </Theme>,
   document.getElementById('root'),
