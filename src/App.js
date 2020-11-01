@@ -13,18 +13,10 @@ const App = () => {
     <Router>
       <Header />
       <Switch>
-        <Route path="/shop">
-          <Shop />
-        </Route>
-        <Route exact path="/login">
-          <SignUpAndSignIn />
-        </Route>
-        <Route exact path="/checkout">
-          <Checkout />
-        </Route>
-        <Route exact path="/">
-          <Home />
-        </Route>
+        <Route path="/shop" component={Shop} />
+        <Route exact path="/login" component={SignUpAndSignIn} />
+        <Route exact path="/checkout" component={Checkout} />
+        <Route exact path="/" component={Home} />
       </Switch>
       <DialogBox />
     </Router>

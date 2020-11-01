@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import TableContainer from '@material-ui/core/TableContainer';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
@@ -13,6 +14,7 @@ import useStyles from './styles';
 import withDialog from '../../hocs/withDialog/withDialog';
 import ClearButton from './clearButton';
 import QuantityField from './quantityField';
+import StripeButton from '../../modules/stripeButton';
 
 const Checkout = ({
   cartItems,
@@ -83,9 +85,15 @@ const Checkout = ({
         align="right"
         variant="h3"
         component="p"
+        gutterBottom
       >
         {`TOTAL: $${cartItemsTotalValue}`}
       </Typography>
+      <Grid container justify="flex-end">
+        <Grid item>
+          <StripeButton price={cartItemsTotalValue} />
+        </Grid>
+      </Grid>
     </Container>
   );
 };

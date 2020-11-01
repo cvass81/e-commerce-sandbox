@@ -1,22 +1,13 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import { Route } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
-import CollectionPreview from './collectionPreview';
-import * as C from './constants';
+import CollectionsPreview from './collectionsPreview';
+import CategoryPage from './categoryPage';
 
-const Shop = () => (
+const Shop = ({ match }) => (
   <Container>
-    <Typography component="h2" variant="h2" gutterBottom>
-      Collections
-    </Typography>
-    <Grid container direction="column" wrap="nowrap" spacing={3}>
-      {Object.keys(C).map(previewKey => (
-        <Grid item key={previewKey}>
-          <CollectionPreview {...C[previewKey]} />
-        </Grid>
-      ))}
-    </Grid>
+    <Route exact path={match.path} component={CollectionsPreview} />
+    <Route path={`${match.path}/:categoryId`} component={CategoryPage} />
   </Container>
 );
 
