@@ -1,1 +1,1 @@
-export { default } from './LoginButtonContainer';
+export { default } from './LoginButton';

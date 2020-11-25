@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Collection from '../../../modules/collection/Collection';
 import withShopData from '../../../hocs/withShopData';
+import withSpinner from '../../../hocs/withSpinner';
 
 const CollectionsPreview = ({ collections }) => (
   <>
@@ -19,4 +20,4 @@ const CollectionsPreview = ({ collections }) => (
   </>
 );
 
-export default withShopData(CollectionsPreview);
+export default withSpinner(withShopData(CollectionsPreview));

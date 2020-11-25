@@ -1,8 +1,10 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectors } from '../../../redux/user';
-import LoginButton from './LoginButton';
+import { selectors, actions } from '../../redux/user';
 
 export default connect(
   createStructuredSelector({ currentUser: selectors.getCurrentUser }),
-)(LoginButton);
+  dispatch => ({
+    setCurrentUser: user => dispatch(actions.setCurrentUser(user)),
+  }),
+);

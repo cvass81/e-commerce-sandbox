@@ -4,6 +4,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import SignIn from './signIn';
 import SignUp from './signUp';
+import withUser from '../../hocs/withUser';
 
 const SignUpAndSignIn = ({ currentUser }) => {
   if (currentUser) {
@@ -23,4 +24,4 @@ const SignUpAndSignIn = ({ currentUser }) => {
   );
 };
 
-export default SignUpAndSignIn;
+export default withUser(SignUpAndSignIn);
