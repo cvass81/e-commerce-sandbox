@@ -7,4 +7,13 @@ const getCollections = createSelector(
   get([C.PROPS.COLLECTIONS]),
 );
 
-export default { getCollections };
+const getIsFetching = createSelector(
+  get([C.REDUCER_NAME]),
+  get([C.PROPS.IS_FETCHING]),
+);
+const getErrorMessage = createSelector(
+  get([C.REDUCER_NAME]),
+  get([C.PROPS.ERROR_MESSAGE]),
+);
+
+export default { getCollections, getIsFetching, getErrorMessage };

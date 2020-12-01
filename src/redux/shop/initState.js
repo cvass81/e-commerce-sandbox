@@ -1,7 +1,9 @@
 import C from './constants';
 
 const initState = {
+  [C.PROPS.IS_FETCHING]: false,
   [C.PROPS.COLLECTIONS]: [],
+  [C.PROPS.ERROR_MESSAGE]: undefined,
   /* [C.PROPS.COLLECTIONS]: {
     hats: {
       itemsOnGrid: 4,

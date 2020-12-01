@@ -5,8 +5,11 @@ import { actions, selectors } from '../../redux/shop';
 export default connect(
   createStructuredSelector({
     collections: selectors.getCollections,
+    isFetching: selectors.getIsFetching,
+    errorMessage: selectors.getErrorMessage,
   }),
   dispatch => ({
-    updateCollections: state => dispatch(actions.updateCollections(state)),
+    fetchCollectionsStartAsync: () =>
+      dispatch(actions.fetchCollectionsStartAsync()),
   }),
 );

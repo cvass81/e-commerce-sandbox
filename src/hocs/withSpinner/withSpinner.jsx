@@ -1,7 +1,7 @@
 import React from 'react';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import Spinner from './Spinner';
 
 const withSpinner = WrappedComponent => ({ isLoading, ...props }) =>
-  isLoading ? <CircularProgress /> : <WrappedComponent {...props} />;
+  isLoading ? <Spinner /> : <WrappedComponent {...props} />;
 
 export default withSpinner;

@@ -1,7 +1,9 @@
 const REDUCER_NAME = 'shop';
 
 const PROPS = {
+  IS_FETCHING: 'IS_FETCHING',
   COLLECTIONS: 'COLLECTIONS',
+  ERROR_MESSAGE: 'ERROR_MESSAGE',
 };
 
 export default {

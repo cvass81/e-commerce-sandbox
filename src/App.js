@@ -10,12 +10,14 @@ import { DialogBox } from './hocs/withDialog';
 const App = () => (
   <Router>
     <Header />
-    <Switch>
-      <Route path="/shop" component={Shop} />
-      <Route exact path="/login" component={SignUpAndSignIn} />
-      <Route exact path="/checkout" component={Checkout} />
-      <Route exact path="/" component={Home} />
-    </Switch>
+    <main className="main">
+      <Switch>
+        <Route path="/shop" component={Shop} />
+        <Route exact path="/login" component={SignUpAndSignIn} />
+        <Route exact path="/checkout" component={Checkout} />
+        <Route exact path="/" component={Home} />
+      </Switch>
+    </main>
     <DialogBox />
   </Router>
 );
