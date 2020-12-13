@@ -9,7 +9,6 @@ export default connect(
     errorMessage: selectors.getErrorMessage,
   }),
   dispatch => ({
-    fetchCollectionsStartAsync: () =>
-      dispatch(actions.fetchCollectionsStartAsync()),
+    fetchCollectionsStart: () => dispatch(actions.fetchCollectionsStart()),
   }),
 );

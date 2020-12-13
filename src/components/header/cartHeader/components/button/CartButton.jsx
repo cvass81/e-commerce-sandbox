@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import useStyles from './styles';
 import { ShoppingIcon } from '../../../../../svgs';
+import withCart from '../../../../../hocs/withCart';
 
 const CartButton = ({ cartItemsCount, toggleCartVisibility }) => {
   const classes = useStyles();
@@ -23,4 +24,4 @@ const CartButton = ({ cartItemsCount, toggleCartVisibility }) => {
   );
 };
 
-export default CartButton;
+export default withCart(CartButton);

@@ -1,4 +1,5 @@
 import React from 'react';
+import compose from 'lodash/fp/compose';
 import cx from 'classnames';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -15,6 +16,7 @@ import withDialog from '../../hocs/withDialog/withDialog';
 import ClearButton from './clearButton';
 import QuantityField from './quantityField';
 import StripeButton from '../../modules/stripeButton';
+import withCart from '../../hocs/withCart';
 
 const Checkout = ({
   cartItems,
@@ -98,4 +100,4 @@ const Checkout = ({
   );
 };
 
-export default withDialog(Checkout);
+export default compose(withCart, withDialog)(Checkout);

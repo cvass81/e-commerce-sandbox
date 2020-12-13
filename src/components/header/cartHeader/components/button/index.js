@@ -1,1 +1,1 @@
-export { default } from './CartButtonContainer';
+export { default } from './CartButton';

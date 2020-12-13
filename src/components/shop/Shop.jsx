@@ -5,9 +5,9 @@ import CollectionsPreview from './collectionsPreview';
 import CategoryPage from './categoryPage';
 import withShopData from '../../hocs/withShopData';
 
-const Shop = ({ match, isFetching, fetchCollectionsStartAsync }) => {
+const Shop = ({ match, isFetching, fetchCollectionsStart }) => {
   useEffect(() => {
-    fetchCollectionsStartAsync();
+    fetchCollectionsStart();
   }, []);
 
   return (

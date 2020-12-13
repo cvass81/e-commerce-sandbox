@@ -2,6 +2,7 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import withCart from '../../../hocs/withCart';
 import useStyles from './styles';
 
 const Item = ({ item, addItemToCart }) => {
@@ -35,4 +36,4 @@ const Item = ({ item, addItemToCart }) => {
   );
 };
 
-export default Item;
+export default withCart(Item);

@@ -35,5 +35,8 @@ const fetchCollectionsStartAsync = () => dispatch => {
 };
 
 export default {
+  fetchCollectionsStart,
+  fetchCollectionsSuccess,
+  fetchCollectionsError,
   fetchCollectionsStartAsync,
 };
