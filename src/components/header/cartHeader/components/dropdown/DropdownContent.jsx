@@ -3,6 +3,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 import Item from './Item';
 import useStyles from './styles';
+import withCart from '../../../../../hocs/withCart';
 
 const DropdownContent = ({
   cartItems,
@@ -30,4 +31,4 @@ const DropdownContent = ({
   ));
 };
 
-export default DropdownContent;
+export default withCart(DropdownContent);

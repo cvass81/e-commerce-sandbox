@@ -4,14 +4,9 @@ import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 import DropdownContent from './DropdownContent';
 import useStyles from './styles';
+import withCart from '../../../../../hocs/withCart';
 
-const Dropdown = ({
-  anchorEl,
-  cartVisible,
-  cartItemsCount,
-  toggleCartVisibility,
-  cartItems,
-}) => {
+const Dropdown = ({ anchorEl, cartVisible, toggleCartVisibility }) => {
   const history = useHistory();
   const classes = useStyles();
 
@@ -23,11 +18,7 @@ const Dropdown = ({
       open={cartVisible}
       onClose={toggleCartVisibility}
     >
-      <DropdownContent
-        cartItems={cartItems}
-        cartItemsCount={cartItemsCount}
-        toggleCartVisibility={toggleCartVisibility}
-      />
+      <DropdownContent />
       <div className={classes.checkoutBtnContainer}>
         <Button
           variant="outlined"
@@ -46,4 +37,4 @@ const Dropdown = ({
   );
 };
 
-export default Dropdown;
+export default withCart(Dropdown);
