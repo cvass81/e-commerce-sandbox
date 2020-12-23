@@ -7,4 +7,9 @@ const getCurrentUser = createSelector(
   get(C.PROPS.CURRENT_USER),
 );
 
-export default { getCurrentUser };
+const getSignInError = createSelector(
+  get(C.REDUCER_NAME),
+  get(C.PROPS.SIGN_IN_ERROR),
+);
+
+export default { getCurrentUser, getSignInError };

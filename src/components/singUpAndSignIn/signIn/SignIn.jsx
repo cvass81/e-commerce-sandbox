@@ -1,16 +1,17 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import withUser from '../../../hocs/withUser';
 import useStyles from '../styles';
 import GoogleButton from '../../../modules/googleButton';
-import { auth, signInWithGoogle } from '../../../firebase/utils';
 import * as C from './constants';
 
 const initialState = {};
 Object.keys(C).forEach(field => {
   initialState[C[field].name] = '';
+  initialState[`${C[field].name}Error`] = null;
 });
 const reducer = (state, { type, value }) => {
   if (type === 'reset') {
@@ -19,23 +20,42 @@ const reducer = (state, { type, value }) => {
   return { ...state, [type]: value };
 };
 
-const SignIn = () => {
+const SignIn = ({ googleSignInStart, emailSignInStart, signInError }) => {
   const classes = useStyles();
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handleChange = e =>
-    dispatch({ type: e.target.name, value: e.target.value });
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-
-    const { email, password } = state;
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      dispatch({ type: 'reset' });
-    } catch (error) {
-      console.error(error);
+  useEffect(() => {
+    if (!signInError) {
+      return;
     }
+
+    const { code, message } = signInError;
+    switch (code) {
+      case 'auth/invalid-email': {
+        dispatch({ type: 'emailError', value: message });
+        break;
+      }
+      case 'auth/user-not-found': {
+        dispatch({ type: 'emailError', value: 'User not found' });
+        break;
+      }
+      case 'auth/wrong-password': {
+        dispatch({ type: 'passwordError', value: message });
+        break;
+      }
+      default:
+    }
+  }, [signInError]);
+
+  const handleChange = e => {
+    dispatch({ type: e.target.name, value: e.target.value });
+    dispatch({ type: `${e.target.name}Error`, value: null });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const { email, password } = state;
+    emailSignInStart(email, password);
   };
 
   return (
@@ -53,6 +73,8 @@ const SignIn = () => {
             onChange={handleChange}
             key={C[field].id}
             value={state[C[field].name]}
+            error={Boolean(state[`${C[field].name}Error`])}
+            helperText={state[`${C[field].name}Error`]}
             {...C[field]}
           />
         ))}
@@ -70,7 +92,7 @@ const SignIn = () => {
           </Grid>
           <Grid item xs>
             <GoogleButton
-              onClick={signInWithGoogle}
+              onClick={googleSignInStart}
               type="button"
               variant="contained"
               color="primary"
@@ -86,4 +108,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default withUser(SignIn);
