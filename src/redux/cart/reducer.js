@@ -31,6 +31,11 @@ export default (state = initState, { type, value }) => {
           value,
         ),
       };
+    case actionTypes.CLEAR_CART:
+      return {
+        ...state,
+        [C.PROPS.CART_ITEMS]: [],
+      };
     default:
       return state;
   }

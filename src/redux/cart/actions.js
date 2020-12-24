@@ -18,9 +18,14 @@ const changeItemQuantity = value => ({
   value,
 });
 
+const clearCart = () => ({
+  type: actionTypes.CLEAR_CART,
+});
+
 export default {
   toggleCartVisibility,
   addItemToCart,
   clearItemFromCart,
   changeItemQuantity,
+  clearCart,
 };
