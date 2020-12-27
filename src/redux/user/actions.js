@@ -36,6 +36,21 @@ const signOutFailure = error => ({
   payload: error,
 });
 
+const signUpStart = emailPasswordDisplayName => ({
+  type: actionTypes.SIGN_UP_START,
+  payload: emailPasswordDisplayName,
+});
+
+const signUpSuccess = ({ user, additionalData }) => ({
+  type: actionTypes.SIGN_UP_SUCCESS,
+  payload: { user, additionalData },
+});
+
+const signUpFailure = error => ({
+  type: actionTypes.SIGN_UP_FAILURE,
+  payload: error,
+});
+
 export default {
   googleSignInStart,
   emailSignInStart,
@@ -45,4 +60,7 @@ export default {
   signOutStart,
   signOutSuccess,
   signOutFailure,
+  signUpStart,
+  signUpSuccess,
+  signUpFailure,
 };

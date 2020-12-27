@@ -12,4 +12,9 @@ const getSignInError = createSelector(
   get(C.PROPS.SIGN_IN_ERROR),
 );
 
-export default { getCurrentUser, getSignInError };
+const getSignUpError = createSelector(
+  get(C.REDUCER_NAME),
+  get(C.PROPS.SIGN_UP_ERROR),
+);
+
+export default { getCurrentUser, getSignInError, getSignUpError };

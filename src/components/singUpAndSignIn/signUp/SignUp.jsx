@@ -1,44 +1,85 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import useStyles from '../styles';
 import * as C from './constants';
-import { auth, createUserProfileDocument } from '../../../firebase/utils';
+import withUser from '../../../hocs/withUser';
 
 const initialState = {};
 Object.keys(C).forEach(field => {
   initialState[C[field].name] = '';
+  initialState[`${C[field].name}Error`] = null;
 });
-const reducer = (state, { field, value }) => ({ ...state, [field]: value });
+const reducer = (state, { type, value }) => ({ ...state, [type]: value });
 
-const SignUp = () => {
+const SignUp = ({ signUpStart, signUpError }) => {
   const classes = useStyles();
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handleChange = e =>
-    dispatch({ field: e.target.name, value: e.target.value });
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-
-    const { displayName, email, password, passwordConfirm } = state;
-    if (password !== passwordConfirm) {
-      console.log('passwords dont match');
+  useEffect(() => {
+    if (!signUpError) {
       return;
     }
 
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password,
-      );
-
-      await createUserProfileDocument(user, { displayName });
-    } catch (error) {
-      console.error(error);
+    const { code, message } = signUpError;
+    switch (code) {
+      case 'auth/invalid-email': {
+        dispatch({ type: 'emailError', value: message });
+        break;
+      }
+      case 'auth/weak-password': {
+        dispatch({ type: 'passwordError', value: message });
+        break;
+      }
+      case 'auth/wrong-password': {
+        dispatch({ type: 'passwordError', value: message });
+        break;
+      }
+      default:
     }
+  }, [signUpError]);
+
+  const handleChange = e => {
+    dispatch({ type: e.target.name, value: e.target.value });
+    if (e.target.name.includes('password')) {
+      dispatch({ type: `passwordError`, value: null });
+      dispatch({ type: `passwordConfirmError`, value: null });
+    }
+    dispatch({ type: `${e.target.name}Error`, value: null });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    const { displayName, email, password, passwordConfirm } = state;
+
+    let hasFrontError = false;
+
+    Object.values(C).forEach(({ name, label }) => {
+      if (!state[name].length) {
+        dispatch({
+          type: `${name}Error`,
+          value: `${label} is required`,
+        });
+        hasFrontError = true;
+      }
+    });
+    if (password !== passwordConfirm) {
+      dispatch({
+        type: 'passwordError',
+        value: true,
+      });
+      dispatch({
+        type: 'passwordConfirmError',
+        value: "Passwords don't match",
+      });
+      hasFrontError = true;
+    }
+    if (hasFrontError) return;
+
+    signUpStart(email, password, displayName);
   };
 
   return (
@@ -56,6 +97,8 @@ const SignUp = () => {
             onChange={handleChange}
             key={C[field].id}
             value={state[C[field].name]}
+            error={Boolean(state[`${C[field].name}Error`])}
+            helperText={state[`${C[field].name}Error`]}
             {...C[field]}
           />
         ))}
@@ -77,4 +120,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default withUser(SignUp);

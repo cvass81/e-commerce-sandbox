@@ -22,6 +22,17 @@ export default (state = initState, { type, payload }) => {
         ...state,
         [C.PROPS.SIGN_IN_ERROR]: payload,
       };
+    case actionTypes.SIGN_UP_SUCCESS:
+      return {
+        ...state,
+        [C.PROPS.SIGN_UP_ERROR]: null,
+      };
+    case actionTypes.SIGN_UP_FAILURE: {
+      return {
+        ...state,
+        [C.PROPS.SIGN_UP_ERROR]: payload,
+      };
+    }
     default:
       return state;
   }
