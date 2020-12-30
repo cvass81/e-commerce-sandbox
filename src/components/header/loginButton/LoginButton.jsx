@@ -6,7 +6,7 @@ import withUser from '../../../hocs/withUser';
 const LoginButton = ({ currentUser, checkUserSession, signOutStart }) => {
   useEffect(() => {
     checkUserSession();
-  }, []);
+  }, [checkUserSession]);
 
   return currentUser ? (
     <Button color="inherit" onClick={signOutStart}>

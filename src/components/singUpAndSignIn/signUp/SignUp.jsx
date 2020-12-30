@@ -1,22 +1,57 @@
 import React, { useEffect, useReducer } from 'react';
+import mapValues from 'lodash/mapValues';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import useStyles from '../styles';
-import * as C from './constants';
+import C from './constants';
 import withUser from '../../../hocs/withUser';
 
-const initialState = {};
-Object.keys(C).forEach(field => {
-  initialState[C[field].name] = '';
-  initialState[`${C[field].name}Error`] = null;
-});
-const reducer = (state, { type, value }) => ({ ...state, [type]: value });
+const INITIAL_STATE = mapValues(C, () => ({ value: '', error: null }));
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'RESET': {
+      return INITIAL_STATE;
+    }
+    case 'SET_VALUE': {
+      return {
+        ...state,
+        [action.name]: { error: null, value: action.value },
+      };
+    }
+    case 'SET_ERROR': {
+      return {
+        ...state,
+        [action.name]: {
+          ...state[action.name],
+          error: action.value,
+        },
+      };
+    }
+    default: {
+      return state;
+    }
+  }
+};
 
 const SignUp = ({ signUpStart, signUpError }) => {
   const classes = useStyles();
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
+
+  const setValue = (name, value) =>
+    dispatch({ type: 'SET_VALUE', name, value });
+  const setError = (name, value) =>
+    dispatch({ type: 'SET_ERROR', name, value });
+  const removePasswordErrors = () => {
+    setError('password', null);
+    setError('passwordConfirm', null);
+  };
+  const setPasswordsDontMatchError = () => {
+    setError('password', ' ');
+    setError('passwordConfirm', "Passwords don't match");
+  };
 
   useEffect(() => {
     if (!signUpError) {
@@ -26,28 +61,21 @@ const SignUp = ({ signUpStart, signUpError }) => {
     const { code, message } = signUpError;
     switch (code) {
       case 'auth/invalid-email': {
-        dispatch({ type: 'emailError', value: message });
+        setError('emailError', message);
         break;
       }
+      case 'auth/wrong-password':
       case 'auth/weak-password': {
-        dispatch({ type: 'passwordError', value: message });
-        break;
-      }
-      case 'auth/wrong-password': {
-        dispatch({ type: 'passwordError', value: message });
+        setError('passwordError', message);
         break;
       }
       default:
     }
   }, [signUpError]);
 
-  const handleChange = e => {
-    dispatch({ type: e.target.name, value: e.target.value });
-    if (e.target.name.includes('password')) {
-      dispatch({ type: `passwordError`, value: null });
-      dispatch({ type: `passwordConfirmError`, value: null });
-    }
-    dispatch({ type: `${e.target.name}Error`, value: null });
+  const handleChange = ({ target: { name, value } }) => {
+    setValue(name, value);
+    name.includes('password') && removePasswordErrors();
   };
 
   const handleSubmit = e => {
@@ -55,29 +83,20 @@ const SignUp = ({ signUpStart, signUpError }) => {
 
     const { displayName, email, password, passwordConfirm } = state;
 
-    let hasFrontError = false;
+    const hasError = Boolean(
+      Object.keys(state).filter(name => {
+        const hasValue = Boolean(state[name].value.length);
+        hasValue || setError(name, 'Field is required');
+        return !hasValue;
+      }).length,
+    );
 
-    Object.values(C).forEach(({ name, label }) => {
-      if (!state[name].length) {
-        dispatch({
-          type: `${name}Error`,
-          value: `${label} is required`,
-        });
-        hasFrontError = true;
-      }
-    });
+    if (hasError) return;
+
     if (password !== passwordConfirm) {
-      dispatch({
-        type: 'passwordError',
-        value: true,
-      });
-      dispatch({
-        type: 'passwordConfirmError',
-        value: "Passwords don't match",
-      });
-      hasFrontError = true;
+      setPasswordsDontMatchError();
+      return;
     }
-    if (hasFrontError) return;
 
     signUpStart(email, password, displayName);
   };
@@ -89,17 +108,16 @@ const SignUp = ({ signUpStart, signUpError }) => {
         Sign up with your email and password
       </Typography>
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-        {Object.keys(C).map(field => (
+        {Object.values(C).map(field => (
           <TextField
             className={classes.textField}
-            required
             fullWidth
             onChange={handleChange}
-            key={C[field].id}
-            value={state[C[field].name]}
-            error={Boolean(state[`${C[field].name}Error`])}
-            helperText={state[`${C[field].name}Error`]}
-            {...C[field]}
+            key={field.id}
+            value={state[field.name].value}
+            error={Boolean(state[field.name].error)}
+            helperText={state[field.name].error}
+            {...field}
           />
         ))}
         <Grid container>

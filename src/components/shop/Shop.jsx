@@ -8,7 +8,7 @@ import withShopData from '../../hocs/withShopData';
 const Shop = ({ match, isFetching, fetchCollectionsStart }) => {
   useEffect(() => {
     fetchCollectionsStart();
-  }, []);
+  }, [fetchCollectionsStart]);
 
   return (
     <Container>

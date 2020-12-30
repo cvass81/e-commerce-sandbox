@@ -1,27 +1,38 @@
-export const DISPLAY_NAME = {
+const displayName = {
   id: 'display_name',
   name: 'displayName',
   label: 'Display Name',
   type: 'text',
+  required: true,
 };
 
-export const EMAIL = {
+const email = {
   id: 'email_sign_up',
   name: 'email',
   label: 'Email',
   type: 'email',
+  required: true,
 };
 
-export const PASSWORD = {
+const password = {
   id: 'password_sign_up',
   name: 'password',
   label: 'Password',
   type: 'password',
+  required: true,
 };
 
-export const CONFIRM_PASSWORD = {
+const passwordConfirm = {
   id: 'password_confirm_sign_up',
   name: 'passwordConfirm',
   label: 'Confirm password',
   type: 'password',
+  required: true,
+};
+
+export default {
+  displayName,
+  email,
+  password,
+  passwordConfirm,
 };
